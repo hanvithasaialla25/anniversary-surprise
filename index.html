@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Anniversary Surprise</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+font-family:Poppins,sans-serif;
+background:linear-gradient(135deg,#b8e3ff 0%,#fff0c9 45%,#ffc4dd 100%);
+overflow:hidden;
+}
+.page{display:none;width:100vw;height:100vh;justify-content:center;align-items:center;flex-direction:column;text-align:center;padding:20px}
+.active{display:flex}
+.gold{color:#d4a200}
+h1,h2{font-family:Cinzel,serif}
+
+.glass{
+background:rgba(255,255,255,.35);
+backdrop-filter:blur(20px);
+border:1px solid rgba(255,255,255,.5);
+padding:35px;
+border-radius:25px;
+box-shadow:0 10px 25px rgba(0,0,0,.15);
+max-width:950px;
+}
+
+button{
+padding:12px 25px;
+border:none;
+border-radius:30px;
+background:linear-gradient(45deg,#FFD700,#f4c430);
+cursor:pointer;
+font-weight:bold;
+margin:8px;
+}
+
+input{padding:12px;border-radius:12px;border:1px solid #ccc}
+
+.gallery{display:flex;justify-content:center;gap:25px}
+.gallery img{
+width:400px;
+height:450px;
+object-fit:cover;
+border:4px solid gold;
+border-radius:25px;
+}
+
+.family-heading{
+font-size:70px;
+font-family:Cinzel,serif;
+color:#d4a200;
+margin-bottom:25px;
+text-shadow:0 4px 15px rgba(255,215,0,.4);
+}
+
+.family{
+width:650px;
+max-width:90%;
+border:5px solid gold;
+border-radius:25px;
+box-shadow:0 15px 35px rgba(0,0,0,.2);
+}
+
+.family-message{
+margin-top:25px;
+font-size:24px;
+line-height:1.8;
+max-width:1000px;
+font-weight:500;
+color:#444;
+padding:0 20px;
+}
+
+video{
+width:90%;
+max-width:950px;
+border:4px solid gold;
+border-radius:20px;
+}
+
+.nav{position:absolute;bottom:20px}
+
+.hearts{position:fixed;inset:0;pointer-events:none;overflow:hidden}
+.heart{position:absolute;bottom:-50px;font-size:24px;animation:floatUp linear infinite}
+@keyframes floatUp{
+0%{transform:translateY(0);opacity:0}
+20%{opacity:.8}
+100%{transform:translateY(-110vh);opacity:0}
+}
+</style>
+</head>
+<body>
+
+<div class="hearts" id="hearts"></div>
+
+<audio id="music" loop>
+<source src="vennilave.mp3" type="audio/mpeg">
+</audio>
+
+<div class="page active" id="p0">
+<div class="glass">
+<h1 class="gold">A Special Surprise ❤️</h1><br>
+<input type="password" id="pass" placeholder="Password"><br><br>
+<button onclick="unlock()">Unlock</button>
+</div>
+</div>
+
+<div class="page" id="p1">
+<div class="glass">
+<h2 class="gold">TO THE BEAUTIFUL LOVE STORY OF OUR PARENTS</h2>
+<p style="font-size:32px;margin-top:25px;">30 May 2004 – Forever</p>
+<br>
+<button onclick="playMusic()">▶ Play</button>
+</div>
+</div>
+
+<div class="page" id="p2">
+<div class="glass">
+<p style="font-size:22px;line-height:1.9">
+Behind every smile we wear today there are two hearts that spent years loving, guiding, protecting, and believing in us. Every family has a story, and ours became beautiful because it began with you. Thank you, Mummy and Daddy, for every sacrifice, every lesson, every laugh, and every moment of unconditional love. You gave us a home filled with love, laughter, and endless memories. Today, we celebrate the beautiful bond that made it all possible.
+</p>
+</div>
+<div class="nav"><button onclick="prev()">← Previous</button><button onclick="next()">Next →</button></div>
+</div>
+
+<div class="page" id="p3">
+<h1 class="gold">YOUR BEAUTIFUL JOURNEY </h1><br>
+<div class="gallery">
+<img src="cover.jpeg">
+<img src="photo2.jpeg">
+<img src="photo3.jpeg">
+
+
+</div>
+<div class="nav"><button onclick="prev()">← Previous</button><button onclick="next()">Next →</button></div>
+</div>
+
+<div class="page" id="p4">
+<h1 class="gold">Wedding Memories </h1><br>
+<video id="weddingVideo" controls>
+<source src="wedding.mp4" type="video/mp4">
+</video>
+<div class="nav"><button onclick="prev()">← Previous</button><button onclick="next()">Next →</button></div>
+</div>
+
+<div class="page" id="p5">
+<h1 class="family-heading">FOREVER </h1>
+
+<img src="family.jpeg" class="family">
+
+<p class="family-message">
+Your 22 years of togetherness have given us countless memories and a lifetime of love. No matter how much we grow, we'll always be your little girls and you'll always be our greatest blessing.
+</p>
+
+<div class="nav"><button onclick="prev()">← Previous</button><button onclick="next()">Next →</button></div>
+</div>
+
+<div class="page" id="p6">
+<div class="glass">
+<h1 class="gold">Happy Anniversary ❤️</h1><br>
+<h2>With all our love,<br>Honey & Cherry </h2>
+</div>
+<div class="nav"><button onclick="prev()">← Previous</button></div>
+</div>
+
+<script>
+let current=0;
+function show(n){document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.getElementById('p'+n).classList.add('active');current=n;}
+function unlock(){if(document.getElementById('pass').value==='2004')show(1);else alert('Wrong Password ❤️');}
+function playMusic(){document.getElementById('music').play();show(2);}
+function next(){if(current<6)show(current+1);}
+function prev(){if(current>1)show(current-1);}
+
+const video=document.getElementById('weddingVideo');
+const music=document.getElementById('music');
+video.addEventListener('play',()=>music.pause());
+video.addEventListener('pause',()=>music.play());
+video.addEventListener('ended',()=>music.play());
+
+function createHeart(){
+const h=document.createElement('div');
+h.className='heart';
+h.innerHTML='❤️';
+h.style.left=Math.random()*100+'vw';
+h.style.animationDuration=(5+Math.random()*5)+'s';
+document.getElementById('hearts').appendChild(h);
+setTimeout(()=>h.remove(),10000);
+}
+setInterval(createHeart,800);
+</script>
+
+</body>
+</html>"""
+path="/mnt/data/final_v4_anniversary.html"
+Path(path).write_text(html, encoding="utf-8")
+print(path)

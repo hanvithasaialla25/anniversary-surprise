@@ -39,9 +39,10 @@ margin:8px;
 
 input{padding:12px;border-radius:12px;border:1px solid #ccc}
 
-.gallery{display:flex;justify-content:center;gap:25px}
+.gallery{display:flex;justify-content:center;gap:25px;flex-wrap:wrap;}
 .gallery img{
 width:400px;
+max-width:90vw;
 height:450px;
 object-fit:cover;
 border:4px solid gold;
@@ -193,7 +194,4 @@ setInterval(createHeart,800);
 </script>
 
 </body>
-</html>"""
-path="/mnt/data/final_v4_anniversary.html"
-Path(path).write_text(html, encoding="utf-8")
-print(path)
+</html>

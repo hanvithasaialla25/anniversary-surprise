@@ -13,7 +13,7 @@ background:linear-gradient(135deg,#b8e3ff 0%,#fff0c9 45%,#ffc4dd 100%);
 overflow-y:auto;
 overflow-x:hidden;
 }
-.page{display:none;width:100vw;height:100vh;justify-content:center;align-items:center;flex-direction:column;text-align:center;padding:20px}
+.page{display:none;width:100vw;height:100vh;min-height:100vh;justify-content:center;align-items:center;flex-direction:column;text-align:center;padding:20px}
 .active{display:flex}
 .gold{color:#d4a200}
 h1,h2{font-family:Cinzel,serif}
@@ -83,7 +83,7 @@ border:4px solid gold;
 border-radius:20px;
 }
 
-.nav{position:absolute;bottom:20px}
+.nav{margin-top:20px}
 
 .hearts{position:fixed;inset:0;pointer-events:none;overflow:hidden}
 .heart{position:absolute;bottom:-50px;font-size:24px;animation:floatUp linear infinite}
